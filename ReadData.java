@@ -23,8 +23,15 @@ public class ReadData{
                 else{
                     longestName = longestName;
                 }
-                System.out.println(longestName);
+
+
+
+                
+
+
         }
+                System.out.println("The longest name is: "+ longestName);
+                System.out.println("The total songs are: "+count);
 
         in.close();
 
