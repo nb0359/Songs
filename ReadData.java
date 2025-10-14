@@ -12,7 +12,7 @@ public class ReadData{
 
             while (in.hasNext()) {
                 String line = in.nextLine();
-                System.out.println(count + ": " + line.split(",")[0]);
+                System.out.println(count + ": " + line.split(";")[0]);
                 count++;
                 int length = line.length();
                 if (line.length()>longestName){
@@ -46,3 +46,4 @@ public class ReadData{
     
     }
 }
+
