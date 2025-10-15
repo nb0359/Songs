@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class ReadData{
+    public Songs [] read{
+        
     public void getData(){
         try{
             int count = 1;
@@ -57,10 +59,13 @@ public class ReadData{
             
         }
 
+    }
+
         
 
     
     }
 }
+
 
 
