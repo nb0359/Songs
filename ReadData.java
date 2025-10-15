@@ -59,13 +59,25 @@ public class ReadData{
             
         }
 
+        return songs;
+
     }
 
-        
+        public String getLongestTitle(Songs [] list){
+            String longest = "";
+
+            for(int i = 0; i < 28372;i++){
+                String title = list[i].getTitle();
+
+                if (title.length() > longest.length()){
+                    longest = title;
+                }
 
     
     }
+            return title;
 }
+
 
 
 
