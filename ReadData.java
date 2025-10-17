@@ -1,84 +1,73 @@
-import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
-public class ReadData{
-    public Songs [] read{
+
+public class ReadData {
+    public static ArrayList<Song> readSongsFromFile(String filename) {
+        ArrayList<Song> songs = new ArrayList<>();
         
-    public void getData(){
-        try{
-            int count = 1;
-            int longestName = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            boolean isHeader = true;
             
-            Scanner in = new Scanner(new File("songsANSI.csv"));
-
-            in.nextLine();
-            while (in.hasNext()) {
-                String line = in.nextLine();
-                String artist = line.split(";")[0];
-                String title = line.split(";")[1];
-                int year = Integer.parseInt(line.split(";")[2]);
-                String genre = line.split(";")[3];
-                int length = Integer.parseInt(line.split(";")[4]);
-                double shakeability = Double.parseDouble(line.split(";")[5]);
-                double obscene = Double.parseDouble(line.split(";")[6]);
-                double danceability = Double.parseDouble(line.split(";")[7]);
-                double loudness = Double.parseDouble(line.split(";")[8]);
-                String topic = line.split(";")[9];
-
-
-                songs[count] = new Song(artist,title,year,genre,length,shakeability,obscene,danceability,loudness,topic);
-                
-                System.out.println(count + ": " + line.split(";")[0]);
-                count++;
-                int length = line.length();
-                if (line.length()>longestName){
-                    length = longestName;
-                    
-
+            while ((line = br.readLine()) != null) {
+                if (isHeader) {
+                    isHeader = false;
+                    continue;
                 }
-                else{
-                    longestName = longestName;
-                }
-
-
-
                 
-
-
-        }
-        System.out.println("The longest name is: "+ longestName);
-        System.out.println("The total songs are: "+count);
-        System.out.println(songs[298].getTitle());
+                
+                String[] values = line.split(":"); // Split by semi-colon
+                
+                // Make sure we have enough columns
+                if (values.length >= 9) {
+                    try {
+                        // Parse each field
+                        String artistName = values[0];
+                        String trackName = values[1];
+                        int releaseDate = Integer.parseInt(values[2].trim());
+                        String genre = values[3];
+                        int len = Integer.parseInt(values[4].trim());
+                        double shakeTheAudience = Double.parseDouble(values[5].trim());
+                        double obscene = Double.parseDouble(values[6].trim());
+                        double danceability = Double.parseDouble(values[7].trim());
+                        double loudness = Double.parseDouble(values[8].trim());
+                        String topic = values.length > 9 ? values[9] : "";
+                        
+                        // Create Song object and add to list
+                        Song song = new Song(artistName, trackName, releaseDate, 
+                                           genre, len, shakeTheAudience, obscene, 
+                                           danceability, loudness, topic);
+                        songs.add(song);
+                        
+                    } catch (NumberFormatException e) {
+                        // Skip rows with bad data
+                        System.err.println("Skipping row with bad data: " + line);
+                    }
+                }
+            }
             
-        in.close();
-
-        }
-        catch(IOException e){
-            System.out.println("Error in file reading");
+            System.out.println("Successfully loaded " + songs.size() + " songs!");
             
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
         }
-
+        
         return songs;
-
     }
-
-        public String getLongestTitle(Songs [] list){
-            String longest = "";
-
-            for(int i = 0; i < 28372;i++){
-                String title = list[i].getTitle();
-
-                if (title.length() > longest.length()){
-                    longest = title;
-                }
-
     
+    public static void main(String[] args) {
+        String filename = "songs20252026.csv";
+        ArrayList<Song> songs = readSongsFromFile(filename);
+        
+        System.out.println("\n=== First 5 Songs ===");
+        for (int i = 0; i < Math.min(5, songs.size()); i++) {
+            Song s = songs.get(i);
+            System.out.println(s);
+            System.out.println("  Length: " + s.getLen() + "s");
+            System.out.println("  Danceability: " + s.getDanceability());
+            System.out.println("  Loudness: " + s.getLoudness());
+            System.out.println();
+        }
     }
-            return longest;
 }
-
-
-
-
-
