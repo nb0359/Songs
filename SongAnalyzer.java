@@ -12,15 +12,9 @@ public class SongAnalyzer {
         }
         
         
-        // ============================================================
-        // 1. Total number of songs
-        // ============================================================
         System.out.println("1. TOTAL NUMBER OF SONGS");
         System.out.println("   Total number of songs: " + songs.size());
         
-        // ============================================================
-        // 2. Songs from specific years
-        // ============================================================
         System.out.println("\n2. SONGS FROM SPECIFIC YEARS");
         
         int count1982 = 0;
@@ -38,9 +32,6 @@ public class SongAnalyzer {
         System.out.println("   Total songs from 2000: " + count2000);
         System.out.println("   Total songs from 2015: " + count2015);
         
-        // ============================================================
-        // 3. Songs with danceability > 0.80
-        // ============================================================
         System.out.println("\n3. HIGH DANCEABILITY SONGS");
         
         int highDanceability = 0;
@@ -51,9 +42,6 @@ public class SongAnalyzer {
         }
         System.out.println("   Songs with danceability > 0.80: " + highDanceability);
         
-        // ============================================================
-        // 4. Song with largest length
-        // ============================================================
         System.out.println("\n4. SONG WITH LARGEST LENGTH");
         
         Song longestSong = songs.get(0);
@@ -67,9 +55,6 @@ public class SongAnalyzer {
         System.out.println("   Length: " + longestSong.getLen() + " seconds");
         System.out.println("   Year: " + longestSong.getReleaseDate());
         
-        // ============================================================
-        // 5. Song with lowest shakeability score
-        // ============================================================
         System.out.println("\n5. SONG WITH LOWEST SHAKEABILITY SCORE");
         
         Song lowestShake = songs.get(0);
@@ -83,9 +68,6 @@ public class SongAnalyzer {
         System.out.println("   Shakeability: " + lowestShake.getShakeTheAudience());
         System.out.println("   Year: " + lowestShake.getReleaseDate());
         
-        // ============================================================
-        // 6. Loudest song (highest loudness rating)
-        // ============================================================
         System.out.println("\n6. LOUDEST SONG");
         
         Song loudestSong = songs.get(0);
@@ -99,9 +81,6 @@ public class SongAnalyzer {
         System.out.println("   Loudness: " + loudestSong.getLoudness());
         System.out.println("   Year: " + loudestSong.getReleaseDate());
         
-        // ============================================================
-        // 7. Average obscenity level by decade
-        // ============================================================
         System.out.println("\n7. AVERAGE OBSCENITY LEVEL BY DECADE");
         
         // Group songs by decade using a Map
@@ -128,9 +107,6 @@ public class SongAnalyzer {
                 decade, decade + 9, average, decadeSongs.size());
         }
         
-        // ============================================================
-        // 8. Songs with Michael Jackson and Whitney Houston
-        // ============================================================
         System.out.println("\n8. ARTIST-SPECIFIC COUNTS");
         
         int michaelJacksonCount = 0;
@@ -150,8 +126,5 @@ public class SongAnalyzer {
         System.out.println("   Songs with Michael Jackson: " + michaelJacksonCount);
         System.out.println("   Songs with Whitney Houston: " + whitneyHoustonCount);
         
-        System.out.println("\n================================================");
-        System.out.println("=== ANALYSIS COMPLETE ===");
-        System.out.println("================================================");
     }
 }
