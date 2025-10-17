@@ -17,7 +17,7 @@ public class ReadData {
                 }
                 
                 
-                String[] values = line.split(":"); // Split by semi-colon
+                String[] values = line.split(";");
                 
                 // Make sure we have enough columns
                 if (values.length >= 9) {
@@ -41,8 +41,7 @@ public class ReadData {
                         songs.add(song);
                         
                     } catch (NumberFormatException e) {
-                        // Skip rows with bad data
-                        System.err.println("Skipping row with bad data: " + line);
+                        System.err.println("Skipping row if it has bad data: " + line);
                     }
                 }
             }
@@ -57,10 +56,10 @@ public class ReadData {
     }
     
     public static void main(String[] args) {
-        String filename = "songs20252026.csv";
+        String filename = "songsANSI.csv";
         ArrayList<Song> songs = readSongsFromFile(filename);
         
-        System.out.println("\n=== First 5 Songs ===");
+        System.out.println("\n=== Testing First 5 Songs ===");
         for (int i = 0; i < Math.min(5, songs.size()); i++) {
             Song s = songs.get(i);
             System.out.println(s);
