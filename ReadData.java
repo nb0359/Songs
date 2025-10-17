@@ -16,34 +16,24 @@ public class ReadData {
                     continue;
                 }
                 
-                
                 String[] values = line.split(";");
                 
-                // Make sure we have enough columns
-                if (values.length >= 9) {
-                    try {
-                        // Parse each field
-                        String artistName = values[0];
-                        String trackName = values[1];
-                        int releaseDate = Integer.parseInt(values[2].trim());
-                        String genre = values[3];
-                        int len = Integer.parseInt(values[4].trim());
-                        double shakeTheAudience = Double.parseDouble(values[5].trim());
-                        double obscene = Double.parseDouble(values[6].trim());
-                        double danceability = Double.parseDouble(values[7].trim());
-                        double loudness = Double.parseDouble(values[8].trim());
-                        String topic = values.length > 9 ? values[9] : "";
+                String artistName = values[0];
+                String trackName = values[1];
+                int releaseDate = Integer.parseInt(values[2].trim());
+                String genre = values[3];
+                int len = Integer.parseInt(values[4].trim());
+                double shakeTheAudience = Double.parseDouble(values[5].trim());
+                double obscene = Double.parseDouble(values[6].trim());
+                double danceability = Double.parseDouble(values[7].trim());
+                double loudness = Double.parseDouble(values[8].trim());
+                String topic = values.length > 9 ? values[9] : "";
                         
-                        // Create Song object and add to list
-                        Song song = new Song(artistName, trackName, releaseDate, 
-                                           genre, len, shakeTheAudience, obscene, 
-                                           danceability, loudness, topic);
-                        songs.add(song);
+                Song song = new Song(artistName, trackName, releaseDate, 
+                                    genre, len, shakeTheAudience, obscene, 
+                                    danceability, loudness, topic);
+                songs.add(song);
                         
-                    } catch (NumberFormatException e) {
-                        System.err.println("Skipping row if it has bad data: " + line);
-                    }
-                }
             }
             
             System.out.println("Successfully loaded " + songs.size() + " songs!");
